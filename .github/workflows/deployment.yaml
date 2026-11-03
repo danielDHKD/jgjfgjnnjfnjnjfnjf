@@ -4,19 +4,13 @@ on: workflow_dispatch
 
 jobs:
   deployment:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - name: checkout repo
         uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
 
       - name: setup
         shell: bash
-        env:
-          SSH_PUBLIC_KEY: ${{ inputs.ssh_public_key }}
-          SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
-          HOST_KEY: ${{ inputs.host_key }}
         run: |
           # Install git-ftp
           pipx install git-ftp
